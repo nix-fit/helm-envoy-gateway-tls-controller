@@ -40,14 +40,6 @@ spec:
             - "-n={{ .Release.Namespace }}"
             - "--liveness={{ .Values.probes.liveness.host }}:{{ .Values.service.port }}{{ .Values.probes.liveness.path }}"
             - "{{ .Values.app.args.homeFolder }}{{ .Values.app.args.scriptLocation }}"
-          readinessProbe:
-            httpGet:
-              path: {{ .Values.probes.readiness.path }}
-              port: {{ .Values.service.port }}
-            initialDelaySeconds: {{ .Values.probes.readiness.initialDelaySeconds }}
-            periodSeconds: {{ .Values.probes.readiness.periodSeconds }}
-            timeoutSeconds: {{ .Values.probes.readiness.timeoutSeconds }}
-            failureThreshold: {{ .Values.probes.readiness.failureThreshold }}
           livenessProbe:
             httpGet:
               path: {{ .Values.probes.liveness.path }}

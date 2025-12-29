@@ -63,9 +63,9 @@ resources:
 probes:
   liveness:
     # -- liveness probe host
-    host: &livenessHost http://localhost
+    host: http://localhost
     # -- liveness probe path
-    path: &healthEndpoint /healthz
+    path: /healthz
     # -- liveness probe initial delay
     initialDelaySeconds: 60
     # -- liveness probe period
@@ -73,19 +73,6 @@ probes:
     # -- liveness probe timeout per attempt
     timeoutSeconds: 1
     # -- liveness probe max consecutive failures before restart
-    failureThreshold: 5
-  readiness:
-    # -- readiness probe host
-    host: *livenessHost
-    # -- readiness probe path
-    path: *healthEndpoint
-    # -- readiness probe inital delay
-    initialDelaySeconds: 60
-    # -- readiness probe period
-    periodSeconds: 5
-    # -- readiness probe timeout per attempt
-    timeoutSeconds: 1
-    # -- readiness probe max consecutive failures before unready
     failureThreshold: 5
 
 app:
