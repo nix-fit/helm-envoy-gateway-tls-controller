@@ -8,7 +8,7 @@ image:
   # -- image tag
   tag: 1.0.0000-snapshot
   # -- image digest
-  digest: sha256:7b4a622c7efc8d7ed8a7ab5c787c1003dcb02f7dbf5d52a8114cee0ee3363e8a
+  digest: sha256:e2cff7f4de13b13758d3e004edf540c7c7feacee67064a2d3119e14c5af4fdff
   # -- image pull policy
   pullPolicy: Always
 
