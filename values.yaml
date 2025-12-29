@@ -63,7 +63,7 @@ resources:
 probes:
   liveness:
     # -- liveness probe host
-    host: &livenessHost localhost
+    host: &livenessHost http://localhost
     # -- liveness probe path
     path: &healthEndpoint /healthz
     # -- liveness probe initial delay
