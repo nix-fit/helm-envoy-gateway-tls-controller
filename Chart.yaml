@@ -1,9 +1,9 @@
 apiVersion: v2
-name: "1"
+name: "envoy-gateway-tls-controller"
 description: Envoy gateway tls controller chart template
 type: application
 version: 1.0.0
-appVersion: "1"
+appVersion: "0.1.0"
 
 maintainers:
   - email: wizardy.oni@gmail.com
