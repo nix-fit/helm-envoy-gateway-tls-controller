@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: ConfigMap
+metadata:
+   name: {{ .Release.Name }}
+data:
+  {{ .Values.app.conf.configName }}.yaml: |
+    certificate:
+      readiness_string: {{ .Values.app.conf.readinessString }}
+      cert_name_suffix: {{ .Values.app.conf.nameSuffix }}
+    kubernetes:
+      use_external: {{ .Values.app.conf.externalKubernetesConfig }}
+      crd:
+        certificate:
+          group: {{ .Values.app.conf.certificate.apiGroup }}
+          version: {{ .Values.app.conf.certificate.apiVersion }}
+          plural: {{ .Values.app.conf.certificate.apiPlural }}
+        envoy_getaway:
+          group: {{ .Values.app.conf.envoy.apiGroup }}
+          version: {{ .Values.app.conf.envoy.apiVersion }}
+          plural: {{ .Values.app.conf.envoy.apiPlural }}
+          name: {{ .Values.app.conf.envoy.envoyGatewayName }}
+  certificate.yaml: |
+    apiVersion: {{ .Values.app.conf.certificate.apiGroup }}/{{ .Values.app.conf.certificate.apiVersion }}
+    kind: Certificate
+    metadata:
+      name: "{name}"
+      namespace: "{namespace}"
+    spec:
+      dnsNames:
+        "{dns_names}"
+      issuerRef:
+        kind: ClusterIssuer
+        name: ca-issuer
+      secretName: "{name}"

@@ -1,0 +1,37 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ .Values.rbac.namespacedRoleName }}
+rules:
+
+  # Framework: knowing which other operators are running (i.e. peering).
+  - apiGroups: [kopf.dev]
+    resources: [kopfpeerings]
+    verbs: [list, watch, patch, get]
+
+  # Framework: posting the events about the handlers progress/errors.
+  - apiGroups: [""]
+    resources: [events]
+    verbs: [create]
+
+  # Application: watching & handling for the custom resource we declare.
+  - apiGroups: [kopf.dev]
+    resources: [kopfexamples]
+    verbs: [list, watch, patch]
+
+  # Application: other resources it produces and manipulates.
+  # Here, we create Jobs, but we do not patch/update/delete them ever.
+  - apiGroups: [batch, extensions]
+    resources: [jobs]
+    verbs: [create]
+
+  # Create certificates
+  - apiGroups: [{{ .Values.app.conf.certificate.apiGroup }}]
+    resources: [{{ .Values.app.conf.certificate.apiPlural }}]
+    verbs: [list, watch, create]
+
+  # Patch envoy
+  - apiGroups: [{{ .Values.app.conf.envoy.apiGroup }}]
+    resources: [{{ .Values.app.conf.envoy.apiPlural }}]
+    verbs: [list, watch, patch]

@@ -1,0 +1,16 @@
+apiVersion: v2
+name: "1"
+description: Envoy gateway tls controller chart template
+type: application
+version: 1.0.0
+appVersion: "1"
+
+maintainers:
+  - email: wizardy.oni@gmail.com
+    name: Ivan Chizh
+    url: https://github.com/drone117
+
+dependencies:
+  - name: commonlib
+    repository: oci://nix-docker.registry.twcstorage.ru/helm/libs
+    version: 1.0.0
