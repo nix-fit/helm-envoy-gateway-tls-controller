@@ -120,9 +120,6 @@ app:
     # -- defines the string value to use in order to check whether the certificate is created
     readinessString: "Certificate is up to date and has not expired"
   env:
-  - name: APP_CONFIG_DIR
-    value: *configPath
-  - name: APP_CONFIG_NAME
-    value: *configName
-  - name: HOME
-    value: *homeFolder
+    APP_CONFIG_DIR: *configPath
+    APP_CONFIG_NAME: *configName
+    HOME: *homeFolder
