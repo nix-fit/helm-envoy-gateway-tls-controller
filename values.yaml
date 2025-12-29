@@ -4,11 +4,11 @@ image:
   # -- image registry
   registry: nix-docker.registry.twcstorage.ru
   # -- image repository
-  repository: 
+  repository: k8s/tools/envoy-gateway-tls-controller
   # -- image tag
-  tag: 
+  tag: 1.0.0000-snapshot
   # -- image digest
-  digest: 
+  digest: sha256:7b4a622c7efc8d7ed8a7ab5c787c1003dcb02f7dbf5d52a8114cee0ee3363e8a
   # -- image pull policy
   pullPolicy: Always
 
