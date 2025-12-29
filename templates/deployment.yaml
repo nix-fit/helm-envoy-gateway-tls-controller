@@ -37,8 +37,8 @@ spec:
           env:
             {{- include "commonlib.envFromValues" . | nindent 12 }}
           args:
-            - "-n {{ .Release.Namespace }}"
-            - "--liveness {{ .Values.probes.liveness.host }}:{{ .Values.service.port }}{{ .Values.probes.liveness.path }}"
+            - "-n={{ .Release.Namespace }}"
+            - "--liveness={{ .Values.probes.liveness.host }}:{{ .Values.service.port }}{{ .Values.probes.liveness.path }}"
             - "{{ .Values.app.args.homeFolder }}{{ .Values.app.args.scriptLocation }}"
           readinessProbe:
             httpGet:
@@ -64,6 +64,8 @@ spec:
             {{- include "commonlib.volumeMounts" . | nindent 12 }}
             - name: config-volume
               mountPath: {{ .Values.app.args.homeFolder }}/{{ .Values.app.conf.configPath }}
+      imagePullSecrets:
+        - name: registry-pull
       volumes:
         {{- include "commonlib.volumes" . | nindent 8 }}
         - name: config-volume
