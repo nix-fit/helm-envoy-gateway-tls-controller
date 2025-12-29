@@ -16,7 +16,7 @@ serviceAccount:
   # -- service account name
   name: kopf-envoy-account
   # -- service account auto mount token
-  automountServiceAccountToken: false
+  automountServiceAccountToken: true
 
 rbac:
   # -- cluster role name
