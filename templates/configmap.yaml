@@ -19,6 +19,7 @@ data:
           version: {{ .Values.app.conf.envoy.apiVersion }}
           plural: {{ .Values.app.conf.envoy.apiPlural }}
           name: {{ .Values.app.conf.envoy.envoyGatewayName }}
+          namespace: {{ .Release.Namespace }}
   certificate.yaml: |
     apiVersion: {{ .Values.app.conf.certificate.apiGroup }}/{{ .Values.app.conf.certificate.apiVersion }}
     kind: Certificate
