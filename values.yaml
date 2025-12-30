@@ -99,7 +99,7 @@ app:
     httproute:
       apiGroup: *envoyApiGroup
       apiVersion: *envoyApiVersion
-      plural: httproutes
+      apiPlural: httproutes
     # -- config path
     configPath: &configPath config
     # -- config name
