@@ -9,6 +9,8 @@ data:
       cert_name_suffix: {{ .Values.app.conf.nameSuffix }}
     kubernetes:
       use_external: {{ .Values.app.conf.externalKubernetesConfig }}
+      route_annotation_label: {{ .Values.app.conf.routeAnnotationLabel }}
+      route_annotation_value: {{ .Values.app.conf.routeAnnotationValue }}
       crd:
         certificate:
           group: {{ .Values.app.conf.certificate.apiGroup }}
@@ -30,6 +32,6 @@ data:
       dnsNames:
         "{dns_names}"
       issuerRef:
-        kind: ClusterIssuer
-        name: ca-issuer
+        kind: {{ .Values.app.conf.certificate.issuerType | default "ClusterIssuer" }}
+        name: {{ .Values.app.conf.certificate.issuerName }}
       secretName: "{name}"

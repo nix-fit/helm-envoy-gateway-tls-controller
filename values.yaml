@@ -96,7 +96,12 @@ app:
       apiGroup: cert-manager.io
       apiVersion: v1
       apiPlural: certificates
+      # -- type of issuer
+      issuerType: ClusterIssuer
+      # -- name of issuer
+      issuerName: letsencrypt-prod-gateway
     httproute:
+    #  -- api parameters for httproute
       apiGroup: *envoyApiGroup
       apiVersion: *envoyApiVersion
       apiPlural: httproutes
@@ -104,6 +109,10 @@ app:
     configPath: &configPath config
     # -- config name
     configName: &configName config
+    # -- annotation label to check for valid http route
+    routeAnnotationLabel: "tls.envoy-gateway.io/enabled"
+    # -- annotation label value to check for valid http route
+    routeAnnotationValue: "true"
     # -- if set to False the app will try to get kube api by in cluster config
     externalKubernetesConfig: False
     # -- what suffix to add to certificate name ex. {name}-{suffix}
