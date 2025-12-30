@@ -86,8 +86,8 @@ app:
   conf:
     envoy:
       # -- api parameters for envoy
-      apiGroup: gateway.networking.k8s.io
-      apiVersion: v1
+      apiGroup: &envoyApiGroup gateway.networking.k8s.io
+      apiVersion: &envoyApiVersion v1
       apiPlural: gateways
       # -- envoy gateway name to patch
       envoyGatewayName: "envoy-gateway"
@@ -96,6 +96,10 @@ app:
       apiGroup: cert-manager.io
       apiVersion: v1
       apiPlural: certificates
+    httproute:
+      apiGroup: *envoyApiGroup
+      apiVersion: *envoyApiVersion
+      plural: httproutes
     # -- config path
     configPath: &configPath config
     # -- config name
