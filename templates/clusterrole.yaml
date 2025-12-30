@@ -17,6 +17,11 @@ rules:
     resources: [namespaces]
     verbs: [list, watch]
 
+  # Framework: posting the events about the handlers progress/errors.
+  - apiGroups: [""]
+    resources: [events]
+    verbs: [create]
+
   # Monitor httproutes
   - apiGroups: [{{ .Values.app.conf.httproute.apiGroup }}]
     resources: [{{ .Values.app.conf.httproute.apiPlural }}]
