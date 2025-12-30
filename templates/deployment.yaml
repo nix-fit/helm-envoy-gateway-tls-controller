@@ -37,7 +37,8 @@ spec:
           env:
             {{- include "commonlib.envFromValues" . | nindent 12 }}
           args:
-            - "-n={{ .Release.Namespace }}"
+            # - "-n={{ .Release.Namespace }}"
+            - "--all-namespaces"
             - "--liveness={{ .Values.probes.liveness.host }}:{{ .Values.service.port }}{{ .Values.probes.liveness.path }}"
             - "{{ .Values.app.args.homeFolder }}{{ .Values.app.args.scriptLocation }}"
           livenessProbe:
